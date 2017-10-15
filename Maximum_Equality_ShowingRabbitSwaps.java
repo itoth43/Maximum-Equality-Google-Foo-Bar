@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
-//Train Class
+/*If the total # of rabbits cant be evenly distributed among the total
+# of train cars then the amount of equally distributed car loads will be
+the total # of cars - 1*/
+
+/*Train Class*/
 public class MyTrain {
     ArrayList<Integer> trainArr = new ArrayList();
 
