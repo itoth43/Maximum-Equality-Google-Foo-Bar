@@ -131,6 +131,7 @@ public class MyTrain {
     public static void main(String args[]) {
         int arr[] = {4, 8, 2};
         MyTrain train = new MyTrain(arr);
+        System.out.print("number of equal cars.");
         System.out.print(train.equalCarrCars());
     }
 }
