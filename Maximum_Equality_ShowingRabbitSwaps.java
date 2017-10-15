@@ -1,12 +1,17 @@
 import java.util.ArrayList;
 
+//Train Class
 public class MyTrain {
     ArrayList<Integer> trainArr = new ArrayList();
+
+    /*Train Constructor*/
     public MyTrain(int arr[]) {
         for (int i = 0; i < arr.length; i++) {
             trainArr.add(arr[i]);
         }
     }
+
+    /*Finds sum of all elements in array (total number of rabbits on the train).*/
     public int sumOfArr() {
         int sum = 0;
         for(int i = 0; i < trainArr.size(); i++) {
@@ -14,13 +19,17 @@ public class MyTrain {
         }
         return sum;
     }
+
+    /*Returns true if the number of actual equal train cars matches the number
+    of expected equal train cars.*/
     public boolean isBalanced(){
         int perCar = sumOfArr() / trainArr.size();
         int carCount = 0;
         int expCount = 0;
         boolean retVal = false;
 
-        //calculating expected equal car count
+
+        /*calculating expected equal car count*/
         if(sumOfArr() % trainArr.size() == 0) {
             expCount = trainArr.size();
         }
@@ -28,14 +37,14 @@ public class MyTrain {
             expCount = trainArr.size() - 1;
         }
 
-        //counting number of cars matching the value to expected to be in each car
+        /*counting number of cars matching the value to expected to be in each car*/
         for(int i = 0; i < trainArr.size(); i++){
             if(trainArr.get(i) == perCar) {
                 carCount++;
             }
         }
 
-        //compares expected and actual car count
+        /*compares expected and actual car count*/
         if(carCount == expCount) {
             retVal = true;
         }
@@ -44,6 +53,8 @@ public class MyTrain {
         }
         return retVal;
     }
+
+    /*prints the whole train*/
     public void printTrain() {
         System.out.print("Rabbit Train: ");
         for(int i = 0; i < trainArr.size(); i++) {
@@ -51,16 +62,19 @@ public class MyTrain {
         }
         System.out.println();
     }
+
+    /*swaps rabbits until the total number of rabbits are balanced among the train cars*/
     public void reorder(int flag) {
         /*if flag == 1, bunnies can be evenly distributed among cars*/
         if(flag == 1) {
             int perCar = sumOfArr() / trainArr.size();
             System.out.println("RabbitsPerCar: " + perCar);
+            /*runs until train is balanced*/
             while(!isBalanced()) {
                 for(int i = 0; i < trainArr.size() - 1; i++) {
                     printTrain();
-                    if(trainArr.get(i) > perCar && (trainArr.get(i) > trainArr.get(i+1))) {
-                        // System.out.println("switch greater for lesser neighbor");
+                    /*swaps rabbits if the number in the car is greater than the expected*/
+                    if(trainArr.get(i) > perCar) {
                         trainArr.set(i, Integer.valueOf(trainArr.get(i))-1);
                         trainArr.set(i + 1, Integer.valueOf(trainArr.get(i+1))+1);
                     }
@@ -74,13 +88,16 @@ public class MyTrain {
                 }
             }
         }
+        /*if flag == 0, bunnies can't be evenly distributed among cars*/
         if(flag == 0) {
             int perCar = sumOfArr() / trainArr.size();
 
             System.out.println("RabbitsPerCar: " + perCar);
+            /*runs until train is balanced*/
             while(!isBalanced()) {
                 for(int i = 0; i < trainArr.size() - 1; i++) {
                     printTrain();
+                    /*swaps rabbits if the number in the car is greater than the expected*/
                     if(trainArr.get(i) > perCar) {
                         trainArr.set(i, Integer.valueOf(trainArr.get(i))-1);
                         trainArr.set(i + 1, Integer.valueOf(trainArr.get(i+1))+1);
